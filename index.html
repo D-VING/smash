@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d18"><title>SMASH-CAU — Card Arena</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Pretendard:wght@400;500;600;700;800;900&display=swap');
+:root{--bg:#090d18;--panel:#121a2b;--panel2:#1a2540;--line:#293858;--text:#f5f7ff;--muted:#8d9bb8;--cyan:#5ce1e6;--pink:#ff5d91;--gold:#ffc96b;--green:#79e6a4}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#26345b 0,#0b1120 50%,#070a12 100%);color:var(--text);font-family:Pretendard,system-ui,sans-serif;min-height:100vh}button{font:inherit;cursor:pointer;color:inherit;border:0}button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}.hidden{display:none!important}
+.top{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,56px);border-bottom:1px solid #ffffff13;background:#080c16aa;backdrop-filter:blur(16px);position:sticky;top:0;z-index:5}.brand{font-family:'Black Han Sans';font-size:27px;letter-spacing:1px}.brand span{color:var(--cyan)}.top small{color:var(--muted);letter-spacing:2px;font-size:10px}.wrap{max-width:1160px;margin:auto;padding:34px 22px 60px}.eyebrow{color:var(--cyan);font-size:11px;font-weight:900;letter-spacing:3px}.hero{text-align:center;padding:36px 0 30px}.hero h1{font:clamp(48px,9vw,88px)/.95 'Black Han Sans';margin:12px 0 16px;text-shadow:0 8px 50px #5ce1e633}.hero h1 em{font-style:normal;color:var(--cyan)}.hero p{color:var(--muted);margin:0}.mode-grid,.deck-grid,.character-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.mode-card,.deck-card,.char-card{background:linear-gradient(145deg,#1a2540,#101727);border:1px solid var(--line);border-radius:18px;padding:22px;text-align:left;transition:.2s;position:relative;overflow:hidden}.mode-card:hover,.deck-card:hover,.char-card:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 16px 40px #0005}.mode-card .symbol{font-size:34px}.mode-card h2,.deck-card h3,.char-card h3{margin:12px 0 6px}.mode-card p,.deck-card p,.char-card p{color:var(--muted);font-size:13px;line-height:1.6;margin:0}.section{margin:28px 0}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:14px}.section-head h2{margin:0;font-size:20px}.section-head small{color:var(--muted)}.deck-card{padding:16px}.deck-card.selected,.char-card.selected{border-color:var(--cyan);background:linear-gradient(145deg,#1b3a4c,#111a2b);box-shadow:0 0 0 1px #5ce1e655}.deck-top{display:flex;justify-content:space-between;align-items:center}.tag{font-size:10px;letter-spacing:1px;color:var(--cyan);border:1px solid #5ce1e655;padding:4px 8px;border-radius:99px}.deck-cards{display:flex;gap:5px;margin-top:14px}.mini{flex:1;border-radius:8px;background:#263550;padding:9px 4px;text-align:center;font-size:18px}.mini small{display:block;font-size:9px;color:var(--muted);margin-top:3px}.char-card{padding:14px}.char-icon{font-size:30px}.char-card h3{margin:8px 0 4px}.char-card .skill{color:var(--gold);font-size:11px;font-weight:800;margin-top:8px}
+.primary,.secondary,.ghost{padding:13px 20px;border-radius:12px;font-weight:900;transition:.18s}.primary{background:linear-gradient(110deg,#5ce1e6,#7ca7ff);color:#07111e;box-shadow:0 8px 25px #5ce1e633}.primary:hover{filter:brightness(1.12);transform:translateY(-2px)}.secondary{background:#273653;border:1px solid #3b527a}.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}.full{width:100%}.start-row{display:flex;gap:12px;justify-content:center;margin-top:26px}.arena{max-width:1200px;margin:auto;padding:20px 20px 50px}.arena-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.arena-head .brand{font-size:22px}.turn-pill{background:#1a2a44;border:1px solid #40577e;border-radius:99px;padding:8px 14px;font-size:12px;font-weight:900}.scoreboard{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;background:#111a2b;border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:14px}.player{display:flex;align-items:center;gap:12px}.player.right{justify-content:flex-end;text-align:right}.avatar{width:42px;height:42px;border-radius:13px;background:#263958;display:grid;place-items:center;font-size:23px}.player strong{display:block}.player small{color:var(--muted)}.hp{height:7px;width:130px;background:#303c54;border-radius:20px;margin-top:6px;overflow:hidden}.hp i{display:block;height:100%;background:linear-gradient(90deg,#5ce1a6,#a5f08b);transition:width .4s}.versus{font:20px 'Black Han Sans';color:var(--pink)}.battlefield{display:grid;grid-template-columns:1fr 1fr;gap:14px}.fighter{min-height:180px;background:linear-gradient(145deg,#1a2741,#101727);border:1px solid var(--line);border-radius:16px;padding:18px;position:relative;overflow:hidden}.fighter.enemy{background:linear-gradient(145deg,#3b2039,#171626)}.fighter .fighter-name{font-weight:900;font-size:14px;color:var(--muted)}.fighter .big-emoji{font-size:65px;text-align:center;margin:8px 0;filter:drop-shadow(0 12px 16px #0006);animation:float 3s ease-in-out infinite}.fighter.enemy .big-emoji{animation-delay:-1.5s}.fighter .status{text-align:center;font-size:11px;color:var(--gold);min-height:16px}.arena-mid{display:flex;justify-content:space-between;align-items:center;margin:17px 0 10px}.arena-mid h3{margin:0;font-size:14px}.arena-mid small{color:var(--muted)}.hand{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;min-height:190px}.card{min-height:178px;background:linear-gradient(160deg,#e8edf8,#b9c9e4);color:#17243b;border-radius:13px;padding:11px 10px;text-align:left;position:relative;border:2px solid #ffffff;box-shadow:0 9px 20px #0004;transition:.18s;display:flex;flex-direction:column}.card:hover:not(:disabled){transform:translateY(-12px) rotate(-1deg);box-shadow:0 18px 30px #0007}.card:disabled{opacity:.38;cursor:not-allowed;filter:grayscale(.5)}.card .cost{position:absolute;right:8px;top:8px;background:#253e67;color:white;border-radius:50%;width:24px;height:24px;display:grid;place-items:center;font-weight:900;font-size:12px}.card .art{font-size:36px;text-align:center;margin:17px 0 8px;filter:drop-shadow(0 4px 4px #24334b55)}.card b{font-size:13px}.card p{font-size:10px;line-height:1.35;color:#465572;margin:5px 0}.card .kind{font-size:9px;font-weight:900;letter-spacing:1px;color:#50688d;margin-top:auto}.card.attack{border-color:#ffb6a8}.card.heal{border-color:#9cebc3}.card.special{border-color:#d4b5ff}.card.skill{background:linear-gradient(160deg,#ffe6a9,#e8b95e);border-color:#fff0c4}.hand-actions{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px}.energy{font-weight:900;color:var(--gold)}.log{margin-top:16px;background:#0c1321;border:1px solid #202e49;border-radius:12px;padding:12px 14px;color:#aab7d0;font-size:12px;min-height:45px}.log strong{color:white}.overlay{position:fixed;inset:0;background:#050812d9;backdrop-filter:blur(10px);display:grid;place-items:center;z-index:10;padding:20px}.modal{max-width:480px;width:100%;background:#17223a;border:1px solid #43577d;border-radius:22px;padding:28px;text-align:center;box-shadow:0 30px 100px #000a}.modal .result-icon{font-size:60px}.modal h2{font:36px 'Black Han Sans';margin:10px}.modal p{color:var(--muted);line-height:1.6}.modal .buttons{display:flex;gap:10px;margin-top:22px}.modal .buttons button{flex:1}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}@keyframes hit{0%{transform:translateX(0) scale(1)}25%{transform:translateX(-10px) scale(1.04)}55%{transform:translateX(8px)}100%{transform:translateX(0) scale(1)}}@keyframes heal{0%{filter:drop-shadow(0 0 0 #7cffb0)}50%{filter:drop-shadow(0 0 24px #7cffb0)}100%{filter:none}}@keyframes flash{0%{opacity:0;transform:scale(.5)}30%{opacity:1;transform:scale(1.3)}100%{opacity:0;transform:scale(1.8)}}.hit{animation:hit .35s}.healing{animation:heal .65s}.impact{position:absolute;inset:0;display:grid;place-items:center;font:42px 'Black Han Sans';color:white;text-shadow:0 3px 20px #ff4f75;pointer-events:none;animation:flash .65s forwards}.spark{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle,#fff7 0,transparent 55%);animation:flash .5s forwards}
+@media(max-width:700px){.wrap{padding:20px 14px 40px}.mode-grid,.deck-grid,.character-grid{grid-template-columns:1fr}.scoreboard{padding:10px;gap:5px}.hp{width:85px}.player{gap:7px}.player strong{font-size:12px}.player small{font-size:10px}.avatar{width:34px;height:34px}.battlefield{gap:8px}.fighter{min-height:150px;padding:12px}.fighter .big-emoji{font-size:52px}.hand{grid-template-columns:repeat(5,minmax(112px,1fr));overflow-x:auto;padding:5px 2px 14px}.card{min-height:160px}.hand-actions{align-items:flex-start;flex-direction:column}.top{height:58px}.arena{padding:14px 10px 30px}}
+</style></head>
+<body>
+<header class="top"><div class="brand">SMASH<span>•</span>CAU</div><small>TACTICAL CARD ARENA / BUILD 01</small></header>
+<main id="lobby" class="wrap">
+ <section class="hero"><div class="eyebrow">CHOOSE YOUR FIGHT</div><h1>ONE DECK.<br><em>ONE WINNER.</em></h1><p>카드를 선택하고, 능력을 발동하고, 상대를 제압하세요.</p></section>
+ <section class="section"><div class="section-head"><h2>01. 전투 모드</h2><small>플레이 방식을 선택하세요</small></div><div class="mode-grid">
+  <button class="mode-card" data-mode="ai"><div class="symbol">🤖</div><h2>VS COMPUTER</h2><p>AI 상대와 대결합니다. 상대가 매 턴 전략적으로 카드를 사용합니다.</p></button>
+  <button class="mode-card" data-mode="local"><div class="symbol">⚔️</div><h2>LOCAL DUEL</h2><p>한 기기에서 친구와 번갈아 플레이하는 로컬 대전입니다.</p></button>
+ </div></section>
+ <section class="section"><div class="section-head"><h2>02. 프리셋 덱</h2><small>덱은 미리 구성되어 있습니다</small></div><div class="deck-grid" id="decks"></div></section>
+ <section class="section"><div class="section-head"><h2>03. 파이터 선택</h2><small>캐릭터마다 고유한 패시브 / 액티브 능력이 있습니다</small></div><div class="character-grid" id="characters"></div></section>
+ <div class="start-row"><button id="start" class="primary" disabled>전투 시작 →</button></div>
+</main>
+<main id="arena" class="arena hidden">
+ <div class="arena-head"><div class="brand">SMASH<span>•</span>CAU</div><div class="turn-pill" id="turn">TURN 01 · PLAYER TURN</div><button class="ghost" id="quit">나가기</button></div>
+ <section class="scoreboard">
+  <div class="player"><div class="avatar" id="pAvatar">🛡️</div><div><strong id="pName">PLAYER</strong><small id="pHpText">100 / 100 HP</small><div class="hp"><i id="pHpBar" style="width:100%"></i></div></div></div>
+  <div class="versus">VS</div>
+  <div class="player right"><div><strong id="eName">CPU</strong><small id="eHpText">100 / 100 HP</small><div class="hp" style="margin-left:auto"><i id="eHpBar" style="width:100%"></i></div></div><div class="avatar" id="eAvatar">🤖</div></div>
+ </section>
+ <section class="battlefield">
+  <div class="fighter" id="pFighter"><div class="fighter-name">YOUR FIGHTER</div><div class="big-emoji" id="pBig">🛡️</div><div class="status" id="pStatus"></div></div>
+  <div class="fighter enemy" id="eFighter"><div class="fighter-name">OPPONENT</div><div class="big-emoji" id="eBig">🤖</div><div class="status" id="eStatus"></div></div>
+ </section>
+ <div class="arena-mid"><h3 id="handTitle">YOUR HAND</h3><small id="deckCount">DECK: 10</small></div>
+ <section class="hand" id="hand"></section>
+ <div class="hand-actions"><div><span class="energy">✦ <span id="energy">3</span> / 3 에너지</span> <small id="passive" style="color:var(--muted);margin-left:10px"></small></div><button class="primary" id="endTurn">턴 종료 →</button></div>
+ <div class="log" id="log">전투 준비 완료. 카드를 선택하세요.</div>
+</main>
+<div id="overlay" class="overlay hidden"><div class="modal"><div class="result-icon" id="resultIcon">🏆</div><h2 id="resultTitle">VICTORY</h2><p id="resultText"></p><div class="buttons"><button class="secondary" id="again">다시 하기</button><button class="primary" id="home">로비로</button></div></div></div>
+<script>
+const DECKS=[
+ {id:'balanced',name:'밸런스',tag:'ALL-ROUNDER',desc:'공격과 회복, 특수 카드가 고르게 섞인 안정적인 덱.',cards:['strike','strike','heavy','heal','heal','guard','combo','drain','burst','strike']},
+ {id:'rush',name:'러시',tag:'AGGRESSIVE',desc:'빠른 연속 공격으로 상대가 대응하기 전에 몰아칩니다.',cards:['strike','strike','combo','combo','heavy','heavy','burn','guard','heal','burst']},
+ {id:'control',name:'컨트롤',tag:'TACTICAL',desc:'방어와 회복으로 버티며 강력한 한 방을 노립니다.',cards:['guard','guard','heal','heal','drain','heavy','burst','burn','strike','combo']}
+];
+const CHARS=[
+ {id:'guardian',name:'가디언',icon:'🛡️',desc:'단단한 방어로 전장을 지배합니다.',skill:'철벽 — 이번 턴 받는 피해 50% 감소',passive:'매 턴 시작 시 방어도 +2',ability:'guard'},
+ {id:'blazer',name:'블레이저',icon:'🔥',desc:'공격을 거듭할수록 강해지는 파이터.',skill:'오버드라이브 — 다음 공격 피해 2배',passive:'첫 공격 카드 피해 +2',ability:'power'},
+ {id:'medic',name:'메딕',icon:'💚',desc:'회복과 생존에 특화된 지원형 파이터.',skill:'응급 처치 — HP 14 회복',passive:'회복 카드 효과 +3',ability:'heal'},
+ {id:'phantom',name:'팬텀',icon:'🌙',desc:'상대의 허점을 파고드는 전술가.',skill:'그림자 일격 — 12 피해, 에너지 1 회복',passive:'첫 카드 사용 시 1회 1 에너지 회복',ability:'shadow'}
+];
+const CARDS={
+ strike:{name:'기본 타격',art:'👊',cost:1,type:'attack',kind:'ATTACK',desc:'상대에게 8 피해를 줍니다.',run:(s)=>damage(s,8)},
+ heavy:{name:'강타',art:'💥',cost:2,type:'attack',kind:'HEAVY',desc:'상대에게 16 피해를 줍니다.',run:(s)=>damage(s,16)},
+ combo:{name:'연속 타격',art:'🥊',cost:2,type:'attack',kind:'COMBO',desc:'6 피해를 두 번 줍니다.',run:(s)=>{damage(s,6);if(s.e.hp>0)damage(s,6)}},
+ heal:{name:'회복',art:'💚',cost:1,type:'heal',kind:'HEAL',desc:'체력을 12 회복합니다.',run:(s)=>heal(s,12)},
+ guard:{name:'방어 태세',art:'🛡️',cost:1,type:'special',kind:'DEFENSE',desc:'방어도 9를 얻습니다.',run:(s)=>{s.p.block+=9;log('방어도 9 획득!')}},
+ drain:{name:'생명 흡수',art:'🧛',cost:2,type:'special',kind:'LIFESTEAL',desc:'10 피해를 주고 7 회복합니다.',run:(s)=>{damage(s,10);heal(s,7)}},
+ burst:{name:'에너지 폭발',art:'⚡',cost:3,type:'special',kind:'ULTIMATE',desc:'상대에게 24 피해를 줍니다.',run:(s)=>damage(s,24)},
+ burn:{name:'화염구',art:'☄️',cost:2,type:'special',kind:'BURN',desc:'14 피해를 주고 화상 3을 부여합니다.',run:(s)=>{damage(s,14);s.e.burn+=3;log('화상 3 부여!')}}
+};
+let chosenMode=null,chosenDeck='balanced',chosenChar='guardian',game=null;
+const $=id=>document.getElementById(id);
+function renderLobby(){
+ $('decks').innerHTML=DECKS.map(d=>'<button class="deck-card '+(d.id===chosenDeck?'selected':'')+'" data-deck="'+d.id+'"><div class="deck-top"><h3>'+d.name+'</h3><span class="tag">'+d.tag+'</span></div><p>'+d.desc+'</p><div class="deck-cards"><div class="mini">👊<small>공격</small></div><div class="mini">💚<small>회복</small></div><div class="mini">✨<small>특수</small></div></div></button>').join('');
+ $('characters').innerHTML=CHARS.map(c=>'<button class="char-card '+(c.id===chosenChar?'selected':'')+'" data-char="'+c.id+'"><div class="char-icon">'+c.icon+'</div><h3>'+c.name+'</h3><p>'+c.desc+'</p><div class="skill">✦ '+c.skill+'</div></button>').join('');
+ document.querySelectorAll('[data-deck]').forEach(b=>b.onclick=()=>{chosenDeck=b.dataset.deck;renderLobby()});
+ document.querySelectorAll('[data-char]').forEach(b=>b.onclick=()=>{chosenChar=b.dataset.char;renderLobby()});
+ document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{chosenMode=b.dataset.mode;document.querySelectorAll('[data-mode]').forEach(x=>x.style.borderColor=x.dataset.mode===chosenMode?'var(--cyan)':'var(--line)');$('start').disabled=false});
+}
+function makeFighter(charId,isAI){const c=CHARS.find(x=>x.id===charId);return {name:isAI?'CPU · '+c.name:c.name,icon:isAI?'🤖':c.icon,char:c,hp:100,max:100,block:0,burn:0,overdrive:false,skillUsed:false,firstCard:true}}
+function startGame(){
+ const deck=DECKS.find(d=>d.id===chosenDeck);
+ game={mode:chosenMode,turn:1,active:0,over:false,p:{...makeFighter(chosenChar,false),deck:[...deck.cards],hand:[],discard:[],energy:3},e:{...makeFighter(chosenMode==='ai'?'blazer':CHARS[(CHARS.findIndex(c=>c.id===chosenChar)+1)%4].id,true),deck:[...deck.cards],hand:[],discard:[],energy:3}};
+ shuffle(game.p.deck);shuffle(game.e.deck);draw(game.p,5);draw(game.e,5);
+ $('lobby').classList.add('hidden');$('arena').classList.remove('hidden');$('overlay').classList.add('hidden');render();
+ log(chosenMode==='ai'?'전투 시작! AI를 상대하세요.':'친구 대전 시작! PLAYER 1의 턴입니다.');
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}
+function draw(f,n){for(let i=0;i<n;i++){if(!f.deck.length){if(!f.discard.length)break;f.deck=f.discard.splice(0);shuffle(f.deck)}f.hand.push(f.deck.pop())}}
+function current(){return game.active===0?game.p:game.e}function other(){return game.active===0?game.e:game.p}
+function log(t){$('log').innerHTML=t}
+function damage(s,n){let target=s.e;let amount=Math.round(n*(s.p.overdrive?2:1));s.p.overdrive=false;let blocked=Math.min(target.block,amount);target.block-=blocked;let actual=amount-blocked;if(s.p.char.id==='blazer'&&s.p.firstCard)actual+=2;target.hp=Math.max(0,target.hp-actual);$('eFighter').classList.remove('hit');void $('eFighter').offsetWidth;$('eFighter').classList.add('hit');$('eFighter').insertAdjacentHTML('beforeend','<div class="impact">-'+actual+'</div>');setTimeout(()=>document.querySelectorAll('.impact').forEach(x=>x.remove()),700);log('상대에게 <strong>'+actual+' 피해</strong>!'+(blocked?' (방어 '+blocked+' 흡수)':''));if(target.hp<=0)finish(true)}
+function heal(s,n){let amount=n+(s.p.char.id==='medic'?3:0);let before=s.p.hp;s.p.hp=Math.min(s.p.max,s.p.hp+amount);let gained=s.p.hp-before;$('pFighter').classList.add('healing');setTimeout(()=>$('pFighter').classList.remove('healing'),700);log('체력 <strong>+'+gained+'</strong> 회복!')}
+function playCard(index){if(game.over)return;const f=current(),cardId=f.hand[index],c=CARDS[cardId];if(!c||f.energy<c.cost)return;f.energy-=c.cost;f.hand.splice(index,1);f.discard.push(cardId);if(f.char.id==='phantom'&&f.firstCard){f.energy=Math.min(3,f.energy+1);log('팬텀 패시브: 에너지 +1!')}let s={p:f,e:other()};c.run(s);f.firstCard=false;if(game.over)return;render()}
+function useSkill(){const f=current(),e=other();if(f.skillUsed)return;f.skillUsed=true;switch(f.char.ability){case'guard':f.block+=18;log('철벽 발동! 방어도 +18');break;case'power':f.overdrive=true;log('오버드라이브! 다음 공격 피해 2배');break;case'heal':f.hp=Math.min(100,f.hp+14);log('응급 처치! 체력 +14');break;case'shadow':{let d=Math.min(e.block,12);e.block-=d;e.hp=Math.max(0,e.hp-(12-d));f.energy=Math.min(3,f.energy+1);log('그림자 일격! 12 피해, 에너지 +1');if(e.hp<=0)finish(true);break}}render()}
+function render(){
+ const p=game.p,e=game.e,active=current();
+ $('turn').textContent='TURN '+String(game.turn).padStart(2,'0')+' · '+(game.active===0?'PLAYER 1 TURN':'PLAYER 2 TURN');
+ $('pName').textContent=p.name;$('eName').textContent=e.name;$('pAvatar').textContent=p.icon;$('pBig').textContent=p.icon;$('eAvatar').textContent=e.icon;$('eBig').textContent=e.icon;
+ $('pHpText').textContent=p.hp+' / 100 HP'+(p.block?' · 🛡 '+p.block:'');$('eHpText').textContent=e.hp+' / 100 HP'+(e.block?' · 🛡 '+e.block:'');
+ $('pHpBar').style.width=p.hp+'%';$('eHpBar').style.width=e.hp+'%';$('pStatus').textContent=p.burn?'🔥 화상 '+p.burn:'';$('eStatus').textContent=e.burn?'🔥 화상 '+e.burn:'';
+ $('handTitle').textContent=game.active===0?'YOUR HAND':'PLAYER 2 HAND';$('deckCount').textContent='DECK: '+active.deck.length+' · DISCARD: '+active.discard.length;$('energy').textContent=active.energy;$('passive').textContent=active.char.passive;
+ $('hand').innerHTML=active.hand.map((id,i)=>{let c=CARDS[id];return '<button class="card '+c.type+'" data-card="'+i+'" '+(active.energy<c.cost?'disabled':'')+'><span class="cost">'+c.cost+'</span><div class="art">'+c.art+'</div><b>'+c.name+'</b><p>'+c.desc+'</p><span class="kind">'+c.kind+'</span></button>'}).join('');
+ document.querySelectorAll('[data-card]').forEach(b=>b.onclick=()=>playCard(Number(b.dataset.card)));
+ $('endTurn').textContent=game.active===0&&game.mode==='local'?'턴 종료 / 상대에게 넘기기 →':'턴 종료 →';
+ $('endTurn').disabled=game.over;$('endTurn').onclick=endTurn;
+ let skill=active.char.skill.split(' — ')[0];$('endTurn').insertAdjacentElement('beforebegin',document.createElement('span'));
+}
+function endTurn(){if(game.over)return;const f=current(),e=other();if(f.burn){f.hp=Math.max(0,f.hp-f.burn);f.burn=Math.max(0,f.burn-1);if(f.hp<=0){finish(game.active===1);return}}
+ if(game.active===0&&game.mode==='ai'){game.active=1;aiTurn();return}
+ if(game.active===0&&game.mode==='local'){game.active=1;f.energy=3;draw(e,1);render();log('PLAYER 2의 차례입니다. 카드를 사용하세요.');return}
+ game.active=0;game.turn++;startTurn(game.p);render();log('PLAYER 1의 턴!');}
+function startTurn(f){f.energy=3;f.block=Math.max(0,f.block-2);if(f.char.id==='guardian')f.block+=2;draw(f,1)}
+function aiTurn(){let e=game.e,p=game.p;startTurn(e);render();setTimeout(()=>{if(game.over)return;let guardCount=0;while(e.energy>0&&e.hand.length){let choices=e.hand.map((id,i)=>({id,i,c:CARDS[id]})).filter(x=>x.c.cost<=e.energy);if(!choices.length)break;choices.sort((a,b)=>score(b,p)-score(a,p));let pick=choices[0];e.energy-=pick.c.cost;e.hand.splice(pick.i,1);e.discard.push(pick.id);pick.c.run({p:e,e:p});if(game.over)return;render()}if(Math.random()<.35&&!e.skillUsed){let old=game.active;game.active=1;useSkill();game.active=old}if(!game.over){game.active=0;game.turn++;startTurn(p);render();log('PLAYER 1의 턴! 카드를 선택하세요.')}},650)}
+function score(x,p){if(x.id==='heal')return p.hp<55?10:1;if(x.id==='guard')return p.hp<35?8:2;if(x.id==='drain')return 8;if(x.id==='burst'||x.id==='heavy')return 9;if(x.id==='combo')return 7;return 5}
+function finish(win){if(game.over)return;game.over=true;$('resultIcon').textContent=win?'🏆':'💥';$('resultTitle').textContent=win?'VICTORY':'DEFEAT';$('resultText').textContent=win?'상대를 제압했습니다! 멋진 승리입니다.':'체력이 모두 소진되었습니다. 다음 전투에서 복수하세요.';$('overlay').classList.remove('hidden')}
+$('start').onclick=startGame;$('quit').onclick=()=>{$('arena').classList.add('hidden');$('lobby').classList.remove('hidden');$('overlay').classList.add('hidden')};$('again').onclick=startGame;$('home').onclick=()=>{$('overlay').classList.add('hidden');$('arena').classList.add('hidden');$('lobby').classList.remove('hidden')};
+renderLobby();
+</script></body></html>
