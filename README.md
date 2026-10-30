@@ -19,3 +19,7 @@ Open [index.html](./index.html) in a modern browser. To publish it with GitHub P
 4. End your turn to pass play or let the AI respond.
 
 This is an early playable build. Online multiplayer, deck editing, sound and additional card content can be added in later updates.
+
+
+## Other game: SMASH WORLD
+A separate 3D destruction sandbox is available in [games/smash-world](./games/smash-world/). Choose a generic school or city and use bombs, a baseball bat, laser, meteor, earthquake and a nuclear blast. Includes synthesized sound effects and camera controls.
