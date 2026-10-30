@@ -37,7 +37,7 @@
  </section>
  <div class="arena-mid"><h3 id="handTitle">YOUR HAND</h3><small id="deckCount">DECK: 10</small></div>
  <section class="hand" id="hand"></section>
- <div class="hand-actions"><div><span class="energy">✦ <span id="energy">3</span> / 3 에너지</span> <small id="passive" style="color:var(--muted);margin-left:10px"></small></div><button class="primary" id="endTurn">턴 종료 →</button></div>
+ <div class="hand-actions"><div><span class="energy">✦ <span id="energy">3</span> / 3 에너지</span> <small id="passive" style="color:var(--muted);margin-left:10px"></small></div><button class="secondary" id="skillBtn">✦ 캐릭터 능력</button><button class="primary" id="endTurn">턴 종료 →</button></div>
  <div class="log" id="log">전투 준비 완료. 카드를 선택하세요.</div>
 </main>
 <div id="overlay" class="overlay hidden"><div class="modal"><div class="result-icon" id="resultIcon">🏆</div><h2 id="resultTitle">VICTORY</h2><p id="resultText"></p><div class="buttons"><button class="secondary" id="again">다시 하기</button><button class="primary" id="home">로비로</button></div></div></div>
@@ -99,7 +99,7 @@ function render(){
  document.querySelectorAll('[data-card]').forEach(b=>b.onclick=()=>playCard(Number(b.dataset.card)));
  $('endTurn').textContent=game.active===0&&game.mode==='local'?'턴 종료 / 상대에게 넘기기 →':'턴 종료 →';
  $('endTurn').disabled=game.over;$('endTurn').onclick=endTurn;
- let skill=active.char.skill.split(' — ')[0];$('endTurn').insertAdjacentElement('beforebegin',document.createElement('span'));
+ $('skillBtn').textContent='✦ '+active.char.skill.split(' — ')[0];$('skillBtn').disabled=active.skillUsed||game.over;$('skillBtn').onclick=useSkill;
 }
 function endTurn(){if(game.over)return;const f=current(),e=other();if(f.burn){f.hp=Math.max(0,f.hp-f.burn);f.burn=Math.max(0,f.burn-1);if(f.hp<=0){finish(game.active===1);return}}
  if(game.active===0&&game.mode==='ai'){game.active=1;aiTurn();return}
